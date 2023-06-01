@@ -43,7 +43,7 @@ def copy():
     # go onto the next item
     #pyautogui.press("Enter")
     #sleep(0.1)
-tags = set()
+tags = []
 with open("tag.txt", "r") as f:
     lines = f.readlines()
 
@@ -51,7 +51,9 @@ for line in lines:
     if not line.startswith("?"):
         continue
     current = line.split("? ")[1]
-    tags.add((start_string(current)))
+    tag = (start_string(current))
+    if tag not in tags:
+        tags.append(tag)
 
 pyperclip.copy("")
 for i, tag in enumerate(tags):
