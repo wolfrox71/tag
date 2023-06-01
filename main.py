@@ -2,6 +2,7 @@ import re
 import pyperclip
 import pyautogui
 from time import sleep
+import platform
 
 def start_string(tag: str) -> str:
     """returns the entered tag without the number part"""
@@ -13,36 +14,65 @@ pyperclip.copy("")
 sleep(1)
 
 def copy():
-    # swap to chrome
-    pyautogui.keyDown("command")
-    pyautogui.keyDown("tab")
-    sleep(0.05)
-    pyautogui.keyUp("command")
-    pyautogui.keyUp("tab")
+    if platform.system() == "Darwin": # MACOS
+            
+        # swap to chrome
+        pyautogui.keyDown("command")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("command")
+        pyautogui.keyUp("tab")
 
-    sleep(0.1)
+        sleep(0.1)
 
-    # paste 
-    pyautogui.keyDown("command")
-    pyautogui.keyDown("v")
-    sleep(0.05)
-    pyautogui.keyUp("v")
-    pyautogui.keyUp("command")
+        # paste 
+        pyautogui.keyDown("command")
+        pyautogui.keyDown("v")
+        sleep(0.05)
+        pyautogui.keyUp("v")
+        pyautogui.keyUp("command")
 
-    sleep(0.1)
-    # enter the tag
-    pyautogui.press("Enter")
+        sleep(0.1)
+        # enter the tag
+        pyautogui.press("Enter")
 
-    # swap to vs code
-    pyautogui.keyDown("command")
-    pyautogui.keyDown("tab")
-    sleep(0.05)
-    pyautogui.keyUp("command")
-    pyautogui.keyUp("tab")
+        # swap to vs code
+        pyautogui.keyDown("command")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("command")
+        pyautogui.keyUp("tab")
+        return
+    
+    if platform.system() == "Windows":
+        # swap to chrome
+        pyautogui.keyDown("alt")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("alt")
+        pyautogui.keyUp("tab")
 
-    # go onto the next item
-    #pyautogui.press("Enter")
-    #sleep(0.1)
+        sleep(0.1)
+
+        # paste 
+        pyautogui.keyDown("ctrl")
+        pyautogui.keyDown("v")
+        sleep(0.05)
+        pyautogui.keyUp("v")
+        pyautogui.keyUp("ctrl")
+
+        sleep(0.1)
+        # enter the tag
+        pyautogui.press("Enter")
+
+        # swap to vs code
+        pyautogui.keyDown("alt")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("alt")
+        pyautogui.keyUp("tab")
+        return
+
 tags = []
 with open("tag.txt", "r") as f:
     lines = f.readlines()
