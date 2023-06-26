@@ -72,6 +72,35 @@ def copy():
         pyautogui.keyUp("alt")
         pyautogui.keyUp("tab")
         return
+    
+    if platform.system() == "Linux":
+        # swap to chrome
+        pyautogui.keyDown("alt")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("alt")
+        pyautogui.keyUp("tab")
+
+        sleep(0.1)
+
+        # paste 
+        pyautogui.keyDown("ctrl")
+        pyautogui.keyDown("v")
+        sleep(0.05)
+        pyautogui.keyUp("v")
+        pyautogui.keyUp("ctrl")
+
+        sleep(0.1)
+        # enter the tag
+        pyautogui.press("Enter")
+
+        # swap to vs code
+        pyautogui.keyDown("alt")
+        pyautogui.keyDown("tab")
+        sleep(0.05)
+        pyautogui.keyUp("alt")
+        pyautogui.keyUp("tab")
+        return
 
 tags = []
 with open("tag.txt", "r") as f:
